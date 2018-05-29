@@ -1,5 +1,22 @@
 # demo-profile-api
 
+## Instructions
+### Using Maven
+Test and run using following commands.
+```
+mvn test
+mvn spring-boot:run
+```
+Open [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) in browser to see API documentation
+
+### Docker Image
+Run following commands to download and run docker image with basic implementation.
+```
+$ docker pull mbilalf/demo-profile-api:init
+$ docker run -p 90:8080 mbilalf/demo-profile-api:init
+```
+Open [localhost:90/swagger-ui.html](http://localhost:90/swagger-ui.html) in browser to see API documentation
+
 ## Assumptions:
 - Some API Consumers are: Backed Enterprise CRM, Customer facing web and mobile apps.
 - I have considered User/password a separate part of Customer Account settings and not profile, thus not included in UserProfile.
@@ -23,9 +40,3 @@ A separate Authorisation Server (AS) should be used to get access token with lim
 - Token should be part of every api call to profile-api service.
 - profile-api should access AS to verify
 
-## Docker Image
-Run following commands to download and docker image with basic implementation.
-```
-$ docker pull mbilalf/demo-profile-api:init
-$ docker run -p 90:8080 mbilalf/demo-profile-api:init
-```
