@@ -1,6 +1,7 @@
 package com.bilal.service.profile.controller;
 
 import com.bilal.service.profile.exception.NotFoundException;
+import com.bilal.service.profile.model.JsonResponse;
 import com.bilal.service.profile.model.UserProfile;
 import com.bilal.service.profile.model.UserProfile.Address;
 import com.bilal.service.profile.service.ProfileService;
@@ -85,6 +86,28 @@ public class UserProfileControllerTest {
 
 
     @Test
+    public void testPutProfileSuccess() throws Exception {
+        //Arrange
+        String putUserUrl = baseUrl + "/123";
+        when(profileService.saveProfile(any(Long.class), any(UserProfile.class))).thenReturn(getTestProfile());
+        UserProfile profile = getTestProfile();
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(profile);
+
+        //Act
+        ResultActions resultActions = mockMvc.perform(
+                MockMvcRequestBuilders
+                        .put(putUserUrl)
+                        .content(json)
+                        .contentType("application/json"));
+
+        //Assert
+        resultActions
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+    }
+
+    @Test
     public void testPatchAddressSuccess() throws Exception {
         //Arrange
         Long userId = 123l;
@@ -131,6 +154,21 @@ public class UserProfileControllerTest {
         resultActions.andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
+
+    @Test
+    public void testDeleteProfile() throws Exception {
+        //Arrange
+        String deleteUrl = baseUrl + "/123";
+        when(profileService.removeProfile(any(Long.class))).thenReturn(true);
+
+        //Act
+        ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.delete(deleteUrl));
+
+        //Assert
+        resultActions
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+    }
 
     UserProfile getTestProfile() {
         Calendar cal = Calendar.getInstance();
