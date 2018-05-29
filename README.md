@@ -26,8 +26,8 @@ Open [localhost:90/swagger-ui.html](http://localhost:90/swagger-ui.html) in brow
 Three type of tests can be written:
 1. Unit tests on functionality that don't require spring environment. No tests written as there is not much functionality.
 
-2. Unit tests on code that require spring environment (e.g. controllers) but should be isolated from other layers of code or integrations (db, queues etc).
-*UserProfileControllerTest* covers few of tests.
+2. Unit tests on code that require spring environment (e.g. controllers, services) but should be isolated from other layers of code or integrations (db, queues etc).
+   - *UserProfileControllerTest* covers few of tests. Tests in this class would look more relevant when DB integration is done. Serive and controller layer do no manipulation and simply handover the data from Db(Map currenlty). In that case separate unit test for UserProfileService should also be added.
 
 3. Integration testing - implemented as unit test without mocking the dependencies. This will expand and will require more
 configuration when integrations increase. *UserProfileControllerIntegrationTest* provides a sample integration test.
