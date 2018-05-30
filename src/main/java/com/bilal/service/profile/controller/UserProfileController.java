@@ -66,7 +66,7 @@ public class UserProfileController {
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Profile not found")
     })
-    @PutMapping("/{userId}")
+    @PutMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public JsonResponse put(@PathVariable("userId") Long userId, @RequestBody UserProfile profile) {
         profileService.updateProfile(userId, profile);
         return JsonResponse.builder().status(JsonResponseStatus.SUCCESS).data(userId).build();
@@ -84,7 +84,7 @@ public class UserProfileController {
     @ApiResponses(value = {
             @ApiResponse(code = 404, message = "Profile not found")
     })
-    @PatchMapping("/{userId}/address/{type}")
+    @PatchMapping(value = "/{userId}/address/{type}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public JsonResponse patchAddress(@PathVariable("userId") Long userId, @PathVariable("type") Address.Type addressType,
                                      @RequestBody Address address) {
         address = profileService.updateProfileAddress(userId, addressType, address);
@@ -99,7 +99,7 @@ public class UserProfileController {
      */
     @ApiOperation(value = "Delete user's profile")
     @ApiResponses(value = {@ApiResponse(code = 404, message = "Profile not found")})
-    @DeleteMapping("/{userId}")
+    @DeleteMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public JsonResponse delete(@PathVariable("userId") Long userId) {
         boolean deleted = profileService.removeProfile(userId);
         return JsonResponse.builder()

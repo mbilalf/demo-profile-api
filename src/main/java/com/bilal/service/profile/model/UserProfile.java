@@ -1,11 +1,15 @@
 package com.bilal.service.profile.model;
 
+import com.bilal.service.profile.model.converter.LocalDateDeserializer;
+import com.bilal.service.profile.model.converter.LocalDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -14,13 +18,19 @@ import java.util.Map;
 @Builder(builderClassName = "Builder")
 public class UserProfile {
 
-    long userId;
-    String firstName;
-    String lastName;
-    Date dob;
-    List<PhoneNumber> phoneNumbers;
+    private long userId;
 
-    Map<Address.Type, Address> addressMap;
+    private String firstName;
+
+    private String lastName;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    private LocalDate dateOfBirth;
+
+    private List<PhoneNumber> phoneNumbers;
+
+    private Map<Address.Type, Address> addressMap;
 
     @Data
     @AllArgsConstructor

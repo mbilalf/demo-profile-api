@@ -1,7 +1,6 @@
 package com.bilal.service.profile.controller;
 
 import com.bilal.service.profile.exception.NotFoundException;
-import com.bilal.service.profile.model.JsonResponse;
 import com.bilal.service.profile.model.UserProfile;
 import com.bilal.service.profile.model.UserProfile.Address;
 import com.bilal.service.profile.service.ProfileService;
@@ -21,8 +20,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 
 import static org.mockito.Matchers.any;
@@ -171,11 +170,10 @@ public class UserProfileControllerTest {
     }
 
     UserProfile getTestProfile() {
-        Calendar cal = Calendar.getInstance();
         List<UserProfile.Address> addresses = Arrays.asList(
                 TestUtils.createAddress(UserProfile.Address.Type.OFFICE, "46 Kippax", "Sydney", "NSW", "2000", "AU"));
 
         List<UserProfile.PhoneNumber> phoneNumbers = Arrays.asList(TestUtils.createPhoneNumber(UserProfile.PhoneNumber.Type.MOBILE, "098765432"));
-        return TestUtils.createProfile("Bilal", "Fazal", cal.getTime(), phoneNumbers, addresses);
+        return TestUtils.createProfile("Bilal", "Fazal", LocalDate.of(1981, 12, 16), phoneNumbers, addresses);
     }
 }
