@@ -1,21 +1,25 @@
 # demo-profile-api
 
 ## Instructions
+
+#### Update 30-Jun-2018
+- Added Jacoco for code coverage. Code coverage for controller and service package is 99%.
+
 ### Using Maven
 Test and run using following commands.
 ```
-mvn test
+mvn test jacoco:report
 mvn spring-boot:run
 ```
-Open [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) in browser to see API documentation
+Open link [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) to see API documentation
 
 ### Docker Image
-Run following commands to download and run docker image with basic implementation.
+Run following commands to download and run docker image.
 ```
-$ docker pull mbilalf/demo-profile-api:init
-$ docker run -p 90:8080 mbilalf/demo-profile-api:init
+$ docker pull mbilalf/demo-profile-api
+$ docker run -p 90:8080 --env SPRING_PROFILE=test mbilalf/demo-profile-api
 ```
-Open [localhost:90/swagger-ui.html](http://localhost:90/swagger-ui.html) in browser to see API documentation
+Open link [localhost:90/swagger-ui.html](http://localhost:90/swagger-ui.html) to see API documentation
 
 ## Assumptions:
 - Some API Consumers are: Backed Enterprise CRM, Customer facing web and mobile apps.
