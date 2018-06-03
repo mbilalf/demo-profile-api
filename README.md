@@ -45,7 +45,7 @@ Possible security solution — in micro-service pattern ideally security should 
 A Authorisation Server (AS) should be used to get access token with limited expiry time.
 
 - Api Client gets an access token from AS. 
-   - Web client will get redirected to Authentication Server page for authentication and redirected back an authorisation code. It will get access_token from Authentication server using authorization code.
+   - Web client will get redirected to Authentication Server page for authentication and redirected back with authorisation code. It will get access_token from Authentication server using authorization code.
    - Mobile app will pass user/pass to Authentication server and get access_token
 - Token should be part of every api call to profile-api service.
 
