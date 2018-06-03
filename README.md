@@ -27,18 +27,6 @@ Open link [localhost:90/swagger-ui.html](http://localhost:90/swagger-ui.html) to
 - I have considered User/password a separate part of Customer Account settings and not profile, thus not included in UserProfile.
 - I focussed more on API documentation and delivery of the application. DB implementation is missing, cuz as per my available time, I ranked it as lowest requirement. I hope this is not considered as a deal breaker.
 
-## Testing
-
-Three type of tests can be written:
-1. Unit tests on functionality that don't require spring environment. No tests written as there is not much functionality.
-
-2. Unit tests on code that require spring environment (e.g. controllers, services) but should be isolated from other layers of code or integrations (db, queues etc).
-   - *UserProfileControllerTest* covers few of tests. Tests in this class would look more relevant when DB integration is done. Serive and controller layer do no manipulation and simply handover the data from Db(Map currenlty). In that case separate unit test for UserProfileService should also be added.
-
-3. Integration testing - implemented as unit test without mocking the dependencies. This will expand and will require more
-configuration when integrations increase. *UserProfileControllerIntegrationTest* provides a sample integration test.
-
-
 ## Security
 Possible security solution — in micro-service pattern ideally security should be OAuth2 based.
 
@@ -59,5 +47,16 @@ A Authorisation Server (AS) should be used to get access token with limited expi
 ##### _Fig2: Integration diagram with mobile client_
 
 ![Integration diagram with mobile security comms](/docs/Model-Auth-Mobile.png)
+
+## Testing
+
+Three type of tests can be written:
+1. Unit tests on functionality that don't require spring environment. No tests written as there is not much functionality.
+
+2. Unit tests on code that require spring environment (e.g. controllers, services) but should be isolated from other layers of code or integrations (db, queues etc).
+   - *UserProfileControllerTest* covers few of tests. Tests in this class would look more relevant when DB integration is done. Serive and controller layer do no manipulation and simply handover the data from Db(Map currenlty). In that case separate unit test for UserProfileService should also be added.
+
+3. Integration testing - implemented as unit test without mocking the dependencies. This will expand and will require more
+configuration when integrations increase. *UserProfileControllerIntegrationTest* provides a sample integration test.
 
 
