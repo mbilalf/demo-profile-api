@@ -22,7 +22,8 @@ $ docker run -p 90:8080 --env SPRING_PROFILE=test mbilalf/demo-profile-api
 Open link [localhost:90/swagger-ui.html](http://localhost:90/swagger-ui.html) to see API documentation
 
 ## Assumptions:
-- Some API Consumers are: Backed Enterprise CRM, Customer facing web and mobile apps.
+- Understanding: Assuming micorservice based pattern, ProfileAPI is part of backend enterpise CRM. It will have direct access to db or use a composite or core service to do IO on database.
+- API will be consumed by customer facing web and mobile apps.
 - I have considered User/password a separate part of Customer Account settings and not profile, thus not included in UserProfile.
 - I focussed more on API documentation and delivery of the application. DB implementation is missing, cuz as per my available time, I ranked it as lowest requirement. I hope this is not considered as a deal breaker.
 
