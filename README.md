@@ -27,6 +27,27 @@ Open link [localhost:90/swagger-ui.html](http://localhost:90/swagger-ui.html) to
 - I have considered User/password a separate part of Customer Account settings and not profile, thus not included in UserProfile.
 - I focussed more on API documentation and delivery of the application. DB implementation is missing, cuz as per my available time, I ranked it as lowest requirement. I hope this is not considered as a deal breaker.
 
+## Security
+Possible security solution — in micro-service pattern ideally security should be OAuth2 based.
+
+A Authorisation Server (AS) should be used to get access token with limited expiry time.
+
+- Api Client gets an access token from AS. 
+   - Web client will get redirected to Authentication Server page for authentication and redirected back with authorisation code. It will get access_token from Authentication server using authorization code.
+   - Mobile app will pass user/pass to Authentication server and get access_token
+- Token should be part of every api call to profile-api service.
+
+
+## Integrations Diagram
+##### _Fig1: Integration diagram with web client_
+
+
+![Integration diagram with web security comms](/docs/Model-Auth-Web.png)
+
+##### _Fig2: Integration diagram with mobile client_
+
+![Integration diagram with mobile security comms](/docs/Model-Auth-Mobile.png)
+
 ## Testing
 
 Three type of tests can be written:
@@ -38,13 +59,4 @@ Three type of tests can be written:
 3. Integration testing - implemented as unit test without mocking the dependencies. This will expand and will require more
 configuration when integrations increase. *UserProfileControllerIntegrationTest* provides a sample integration test.
 
-
-## Security
-Possible security solution — in micro-service pattern ideally security should be OAuth2 based.
-
-A Authorisation Server (AS) should be used to get access token with limited expiry time.
-
-- Api Client gets an access token from AS.
-- Token should be part of every api call to profile-api service.
-- profile-api should access AS to verify token
 
